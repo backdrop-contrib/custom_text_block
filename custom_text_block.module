@@ -39,7 +39,7 @@ function custom_text_block_block_configure($delta = '', $settings = array()) {
   $form['content'] = array(
     '#type' => 'text_format',
     '#title' => t('Block content'),
-    '#default_value' => $settings['content'],
+    '#default_value' => $settings['content']['value'],
     '#options' => $formatters,
     '#description' => $token_link,
     '#token_types' => array(),
