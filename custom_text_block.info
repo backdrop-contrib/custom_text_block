@@ -1,0 +1,4 @@
+name = Custom Text Blocks
+description = "Create a custom text block."
+backdrop = 1.x
+type = module

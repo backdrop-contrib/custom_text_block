@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Allow to create a custom text block.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function custom_text_block_block_info() {
+  $blocks = array();
+  $blocks['custom_text_block'] = array(
+    'info' => t('Custom text'),
+    'description' => t('Create a custom text block'),
+  );
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function custom_text_block_block_view($delta = '', $settings = array(), $contexts = array()) {
+  $block['subject'] = $settings['subject'];
+  $block['content'] = theme('custom_text_block', array('custom_text_block' => filter_xss(token_replace($settings['content']['value']))));
+  return $block;
+}
+
+function custom_text_block_block_configure($delta = '', $settings = array()) {
+  $token_link = ' ' . theme('token_tree_link');
+  $form = array();
+  $form['subject'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#default_value' => $settings['subject'],
+  );
+  $form['content'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Block content'),
+    '#default_value' => $settings['content'],
+    '#options' => $formatters,
+    '#description' => $token_link,
+    '#token_types' => array(),
+  );
+  return $form;
+}
+
+function custom_text_block_theme($existing, $type, $theme, $path) {
+  return array(
+    'custom_text_block' => array(
+      'render element' => 'custom_text_block',
+    ),
+  );
+}
+
+function theme_custom_text_block($variables) {
+  $custom_text_block = $variables['custom_text_block'];
+  return $custom_text_block;
+}
