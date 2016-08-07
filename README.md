@@ -1,15 +1,7 @@
 Custom Text Block
-==========
-
-DESCRIPTION
------------
-Provides a simple text input block.
-
-INSTALLATION
 ------------
-1. Copy custom_text_block directory to your modules directory
-2. Enable the module at module administration page
-3. Add a Block in Layout Builder.
+Do not use! This is merged into Backdrop core!
+====================
 
 LICENSE
 ---------------    
